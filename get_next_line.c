@@ -28,6 +28,11 @@ char	*get_next_line(int fd)
 	buf = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
 	if (!buf)
 		return (NULL);
+	if(read(fd, buf, 0) < 0)
+	{
+		free(buf);
+		return (NULL);
+	}
 	if (str == NULL)
 		str = ft_strdup("");
 	if(!str)
@@ -49,12 +54,17 @@ char	*get_next_line(int fd)
 		str = ft_strjoin(str, buf);
 		free(forfree);
 	}
-	if(bayts == 0)
-		return (0);
+	if(bayts == 0 || !str)
+	{	
+		free(str);
+		return (NULL);
+	}
 	i = 0;
 	while (str[i] != '\n' && str[i])
 		i++;
 	line = (char *)malloc(i + 2 * sizeof(char));
+	if(!line)
+		return (NULL);
 	i = 0;	
 	while (str[i] != '\n' && str[i])
 	{
