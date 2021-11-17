@@ -102,3 +102,38 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_bzero(str + ft_strlen(s1) + ft_strlen(s2), 1);
 	return (str);
 }
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	if (dstsize > 0)
+	{
+		while (src[i] && i < dstsize - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (ft_strlen(src));
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) <= start)
+		return (ft_strdup(""));
+	if (ft_strlen(s + start) < len)
+		sub = (char *)malloc(ft_strlen(s + start) + 1 * sizeof(char));
+	else
+		sub = (char *)malloc(len + 1 * sizeof(char));
+	if (!sub)
+		return (NULL);
+	ft_strlcpy(sub, s + start, len + 1);
+	return (sub);
+}

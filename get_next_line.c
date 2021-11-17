@@ -44,7 +44,7 @@ char	*get_next_line(int fd)
 	while (!ft_strchr(str, '\n') && bayts != 0)
 	{
 		bayts =	 read(fd, buf, BUFFER_SIZE);
-		if(bayts < 0)
+		if(bayts <= 0)
 		{
 			free(buf);
 			return (NULL);
@@ -54,25 +54,39 @@ char	*get_next_line(int fd)
 		str = ft_strjoin(str, buf);
 		free(forfree);
 	}
-	if(bayts == 0 || !str)
-	{	
-		free(str);
-		return (NULL);
-	}
 	i = 0;
-	while (str[i] != '\n' && str[i])
-		i++;
-	line = (char *)malloc(i + 2 * sizeof(char));
-	if(!line)
-		return (NULL);
-	i = 0;	
-	while (str[i] != '\n' && str[i])
+	forfree = str;
+	if (ft_strchr(str, '\n'))
 	{
-		line[i] = str[i]; 
-		i++;
+		while (str[i] != '\n' && str[i])
+			i++;
+		line = ft_substr(str, 0, i + 1);
+		str = ft_strdup(str + i + 1);
+		free(forfree);
 	}
-	if (line[i] == '\n')
-		i++;
-	line[i] = '\0';
+	else
+	{
+		line = ft_strdup(str);
+		free(str);
+		str = NULL;
+	}
 	return (line);
 }
+
+/*
+int main()
+{
+    int        fd;
+    char    *line;
+
+    fd = open("klist.txt", O_RDWR);
+    if (fd < 0)
+        return (printf("ERR"));
+	
+	while((line = get_next_line(fd)))
+	{
+    	printf("%s\n", line);
+		printf("\n");
+	}
+    return (0);
+}*/
