@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-//#define BUFFER_SIZE 10
+#define BUFFER_SIZE 1000
 
 
 void	*ft_memcpy(void *dst, const void *src, size_t n);
