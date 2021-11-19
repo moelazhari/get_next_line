@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "args": ["get_next_line_utils.c"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
