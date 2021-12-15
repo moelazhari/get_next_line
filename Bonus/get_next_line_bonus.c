@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mazhari <mazhari@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mazhari <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 12:57:13 by mazhari           #+#    #+#             */
-/*   Updated: 2021/11/19 21:13:42 by mazhari          ###   ########.fr       */
+/*   Created: 2021/11/20 12:41:13 by mazhari           #+#    #+#             */
+/*   Updated: 2021/11/20 12:41:23 by mazhari          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*fill_line(char **str, char *line)
 {
@@ -64,17 +64,17 @@ int	fill_str(int fd, char **str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str = NULL;
+	static char	*str[1024];
 	char		*line;
 	int			bayts;
 
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
-	if (!str)
-		str = ft_strdup("");
-	bayts = fill_str(fd, &str);
-	line = fill_line(&str, line);
+	if (!str[fd])
+		str[fd] = ft_strdup("");
+	bayts = fill_str(fd, &str[fd]);
+	line = fill_line(&str[fd], line);
 	if (bayts <= 0 && !line[0])
 	{
 		free (line);
