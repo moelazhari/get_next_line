@@ -9,5 +9,5 @@ understanding of allocations, whether they happen on the stack memory or in the
 heap memory, the manipulation and the life cycle of a buffer, the unexpected
 complexity implied in the use of one or many static variables,
 read the [subject](en.subject.pdf) for more information.
-# my graed
+# my gread
 <img src="readme/" width="350" />
