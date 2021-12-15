@@ -10,4 +10,4 @@ heap memory, the manipulation and the life cycle of a buffer, the unexpected
 complexity implied in the use of one or many static variables,
 read the [subject](en.subject.pdf) for more information.
 # my gread
-<img src="readme/" width="350" />
+<img src="readme/my gread.png" width="350" />
